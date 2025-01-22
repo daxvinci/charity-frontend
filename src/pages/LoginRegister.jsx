@@ -15,6 +15,7 @@ const LoginRegister = () => {
     // Redirect to the backend Google OAuth route
     setIsLoading(true)
     window.location.href = `${baseUrl}/form/auth/google`
+    localStorage.removeItem("token");
     setIsLoading(true)
   }
 

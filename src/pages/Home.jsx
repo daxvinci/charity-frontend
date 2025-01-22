@@ -7,6 +7,17 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true); // State to handle loading
   const navigate = useNavigate();
 
+  const handleLogout = async() => {
+
+      localStorage.removeItem("token");
+
+      // Make a logout request to the server to destroy the session
+      await fetch('https://charity-backend-rfj9.onrender.com/form/logout', {
+        method: 'POST',
+        credentials: 'include', // Include cookies for session-based authentication
+      });
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -49,6 +60,14 @@ const Home = () => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6">
+      
+      <button
+        onClick={handleLogout}
+        className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition"
+      >
+        Logout
+      </button>
+      
       <motion.div
         className="text-center"
         initial={{ scale: 0, opacity: 0 }}
