@@ -10,13 +10,13 @@ const Home = () => {
   const handleLogout = async() => {
 
       localStorage.removeItem("token");
-
       // Make a logout request to the server to destroy the session
       await fetch('https://charity-backend-rfj9.onrender.com/form/logout', {
         method: 'POST',
         credentials: 'include', // Include cookies for session-based authentication
       });
-  };
+      console.log('logged out')
+    };
 
   useEffect(() => {
     const fetchUserData = async () => {
